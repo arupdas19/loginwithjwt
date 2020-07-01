@@ -50,7 +50,7 @@ class LoginController extends Controller
     public function handleProviderCallback()
     {
         $user = Socialite::driver('google')->stateless()->user();
-        return $user->token;
+        //return $user->token;
         $s=User::where([
             'email' => $user->email,
             'provider' =>'google'])->get();
@@ -87,10 +87,11 @@ class LoginController extends Controller
     public function handleProviderCallbackFacebook()
     {
         $user = Socialite::driver('facebook')->user();
+        return $user->token;
          $s=User::where([
             'email' => $user->email,
             'provider' =>'facebook'])->get();
-            dd($s);
+            //dd($s);
         if(sizeof($s)==1){
             return redirect()->route('User.Dashboard');   
         }else{
